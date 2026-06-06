@@ -97,7 +97,7 @@ function SamosaCard({ samosa, index }: { samosa: typeof SAMOSAS[0]; index: numbe
         }} />
 
         {/* ── Photo area ── */}
-        <div style={{ height: 220, position: "relative", overflow: "hidden" }}>
+        <div className="h-[240px] md:h-[220px]" style={{ position: "relative", overflow: "hidden" }}>
           {/* Base — Samosa 0, siempre visible */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -115,37 +115,37 @@ function SamosaCard({ samosa, index }: { samosa: typeof SAMOSAS[0]; index: numbe
         </div>
 
         {/* Card body */}
-        <div style={{ padding: "20px 24px 24px" }}>
+        <div style={{ padding: "clamp(24px, 5vw, 28px) clamp(22px, 5vw, 28px) 26px" }}>
 
           {/* Header */}
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <div style={{ fontSize: "8px", letterSpacing: "0.28em", color: samosa.accent, textTransform: "uppercase", fontWeight: 700, marginBottom: 3, opacity: 0.9 }}>
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: "clamp(9px, 2.2vw, 10px)", letterSpacing: "0.24em", color: samosa.accent, textTransform: "uppercase", fontWeight: 700, marginBottom: 7, opacity: 0.95 }}>
                 {item.tagline[lang]}
               </div>
-              <h3 className="font-fascinate" style={{ fontSize: 18, color: "#F4DFC8", lineHeight: 1.2 }}>
+              <h3 className="font-fascinate" style={{ fontSize: "clamp(30px, 8vw, 38px)", color: "#F4DFC8", lineHeight: 0.98 }}>
                 {samosa.name}
               </h3>
             </div>
-            <span className="font-display font-bold" style={{ fontSize: 20, color: "#F0B06D", flexShrink: 0 }}>
+            <span className="font-display font-bold" style={{ fontSize: "clamp(22px, 5vw, 26px)", color: "#F0B06D", flexShrink: 0, lineHeight: 1 }}>
               {samosa.price}
             </span>
           </div>
 
           {/* Description */}
-          <p style={{ fontSize: 12.5, color: "rgba(244,223,200,0.5)", lineHeight: 1.65, marginBottom: 14 }}>
+          <p style={{ fontSize: "clamp(14px, 3.5vw, 15px)", color: "rgba(244,223,200,0.62)", lineHeight: 1.55, marginBottom: 18 }}>
             {item.description[lang]}
           </p>
 
           {/* Ingredients */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-2 mb-5">
             {samosa.ingredients.map((ing) => (
               <span key={ing} style={{
-                fontSize: "9px", letterSpacing: "0.05em",
-                color: "rgba(244,223,200,0.55)",
-                background: "rgba(240,176,109,0.1)",
-                border: "1px solid rgba(240,176,109,0.2)",
-                borderRadius: 20, padding: "3px 10px",
+                fontSize: "clamp(10.5px, 2.7vw, 11.5px)", letterSpacing: "0.04em",
+                color: "rgba(244,223,200,0.7)",
+                background: "rgba(240,176,109,0.12)",
+                border: "1px solid rgba(240,176,109,0.26)",
+                borderRadius: 20, padding: "5px 11px",
               }}>
                 {ing}
               </span>
@@ -155,15 +155,15 @@ function SamosaCard({ samosa, index }: { samosa: typeof SAMOSAS[0]; index: numbe
           {/* Footer */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span style={{ fontSize: "8px", color: "rgba(240,176,109,0.55)", letterSpacing: "0.14em", textTransform: "uppercase" }}>{t.menu.heat[lang]}</span>
+              <span style={{ fontSize: "10px", color: "rgba(240,176,109,0.65)", letterSpacing: "0.13em", textTransform: "uppercase" }}>{t.menu.heat[lang]}</span>
               <SpiceDots level={samosa.spice} />
             </div>
             <button
               style={{
-                fontSize: "9px", letterSpacing: "0.16em", color: "#F0B06D",
+                fontSize: "10px", letterSpacing: "0.15em", color: "#F0B06D",
                 textTransform: "uppercase", fontWeight: 700,
                 background: "rgba(240,176,109,0.1)", border: "1px solid rgba(240,176,109,0.25)",
-                borderRadius: 20, padding: "6px 16px", cursor: "pointer", transition: "all 0.2s",
+                borderRadius: 20, padding: "8px 17px", cursor: "pointer", transition: "all 0.2s",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(240,176,109,0.22)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "rgba(240,176,109,0.1)"; }}

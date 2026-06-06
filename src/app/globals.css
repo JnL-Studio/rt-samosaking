@@ -235,3 +235,7 @@ body {
   background: rgba(139,30,36,0.06);
   transform: translateY(-2px);
 }
+
+nextjs-portal {
+  display: none !important;
+}
