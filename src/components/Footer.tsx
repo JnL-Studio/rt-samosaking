@@ -1,93 +1,132 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const LINKS = {
-  Menú:     ["Samosas", "Lunchboxes", "Chutneys", "Chai Tea", "Extras"],
-  Visita:   ["Encuéntranos", "Horarios", "Catering", "Eventos", "Franquicia"],
-  Conecta:  ["Instagram", "TikTok", "Facebook", "Google Maps", "Zomato"],
-};
-
-const MARQUEE = ["Beef Samosa", "✦", "Masala Chicken", "✦", "Garden Veggie", "✦", "Spiced Paneer", "✦", "Keema Lamb", "✦", "Chai Tea", "✦", "Mint Chutney", "✦", "Tamarind", "✦", "Royal Lunchbox", "✦"];
+const NAV_LINKS = [
+  { label: "Menú", href: "#menu" },
+  { label: "Nuestra historia", href: "#story" },
+  { label: "Lunchboxes", href: "#lunchbox" },
+  { label: "Chutneys", href: "#chutneys" },
+];
 
 export default function Footer() {
+  const scrollTo = (href: string) => {
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <footer className="relative overflow-hidden" style={{ background: "#3D0B0E" }}>
-      <div className="absolute inset-0 pattern-red pointer-events-none opacity-30" />
-      <div style={{ height: "1px", background: "linear-gradient(to right, transparent, rgba(240,176,109,0.3), transparent)" }} />
+      <div className="absolute inset-0 pattern-red pointer-events-none opacity-20" />
+      <div
+        style={{
+          height: "1px",
+          background: "linear-gradient(to right, transparent, rgba(240,176,109,0.45), transparent)",
+        }}
+      />
 
-      {/* Marquee */}
-      <div style={{ padding: "14px 0", overflow: "hidden", borderBottom: "1px solid rgba(240,176,109,0.1)" }}>
-        <div style={{ display: "flex", gap: 36, animation: "marquee 32s linear infinite", width: "max-content" }}>
-          {[...MARQUEE, ...MARQUEE].map((item, i) => (
-            <span key={i} style={{ fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", whiteSpace: "nowrap", color: item === "✦" ? "rgba(240,176,109,0.5)" : "rgba(244,223,200,0.22)", fontWeight: 500 }}>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-14">
-
-          {/* Brand */}
-          <div className="md:col-span-2">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-10 md:py-12">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <div className="flex items-center gap-5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Fotos Samosas/Branding/Badge-Samosa-King.png" alt="Samosa King"
-              style={{ width: 90, height: 90, mixBlendMode: "screen", display: "block", marginBottom: 20, opacity: 0.85 }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/Fotos Samosas/Branding/Empanadas-de-la-india-(rojo).png" alt="Empanadas de la India"
-              style={{ height: 22, width: "auto", filter: "brightness(0) invert(1)", opacity: 0.25, display: "block", marginBottom: 16 }} />
-            <p style={{ color: "rgba(244,223,200,0.22)", fontSize: 13, lineHeight: 1.8, maxWidth: 260 }}>
-              Samosas artesanales hechas con especias reales y la calidez de la hospitalidad india.
-            </p>
-            <div className="flex gap-3 mt-7">
-              {["📸", "🎵", "👥"].map((icon, i) => (
-                <button key={i} style={{ width: 40, height: 40, borderRadius: "50%", fontSize: 16, background: "rgba(240,176,109,0.07)", border: "1px solid rgba(240,176,109,0.15)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.25s" }}
-                  onMouseEnter={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(240,176,109,0.15)"; b.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { const b = e.currentTarget as HTMLButtonElement; b.style.background = "rgba(240,176,109,0.07)"; b.style.transform = "none"; }}>
-                  {icon}
-                </button>
-              ))}
+            <img
+              src="/Fotos Samosas/Branding/Badge-Samosa-King.png"
+              alt="Samosa King"
+              style={{
+                width: 96,
+                height: "auto",
+                mixBlendMode: "screen",
+                display: "block",
+                opacity: 0.9,
+                flexShrink: 0,
+              }}
+            />
+            <div>
+              <p
+                className="font-fascinate"
+                style={{ color: "#F4DFC8", fontSize: 20, lineHeight: 1.1, marginBottom: 7 }}
+              >
+                Empanadas de la India
+              </p>
+              <p style={{ color: "rgba(244,223,200,0.5)", fontSize: 13, lineHeight: 1.5 }}>
+                Samosas artesanales, especias reales.
+              </p>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(LINKS).map(([cat, links], ci) => (
-            <motion.div key={cat} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: ci * 0.08 }}>
-              <h4 style={{ fontSize: "8px", letterSpacing: "0.35em", color: "rgba(240,176,109,0.45)", textTransform: "uppercase", fontWeight: 700, marginBottom: 18 }}>{cat}</h4>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" style={{ fontSize: 14, color: "rgba(244,223,200,0.22)", transition: "color 0.2s" }}
-                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(240,176,109,0.7)"; }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(244,223,200,0.22)"; }}>
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5 md:gap-8">
+            <div>
+              <p
+                style={{
+                  color: "rgba(240,176,109,0.55)",
+                  fontSize: 8,
+                  fontWeight: 700,
+                  letterSpacing: "0.24em",
+                  textTransform: "uppercase",
+                  marginBottom: 5,
+                }}
+              >
+                Abierto hoy
+              </p>
+              <p style={{ color: "rgba(244,223,200,0.72)", fontSize: 13 }}>
+                11:00–20:00 · (555) 123-4567
+              </p>
+            </div>
+            <button
+              className="btn-gold"
+              style={{ padding: "12px 26px", whiteSpace: "nowrap" }}
+            >
+              Ordenar online
+            </button>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8" style={{ borderTop: "1px solid rgba(240,176,109,0.08)" }}>
-          <div className="flex flex-wrap gap-8">
-            {[{ l: "Horario", v: "Lun–Vie 11–20h · Sáb–Dom 10–21h" }, { l: "Teléfono", v: "(555) 123-4567" }].map(({ l, v }) => (
-              <div key={l}>
-                <div style={{ fontSize: "8px", letterSpacing: "0.25em", color: "rgba(240,176,109,0.35)", textTransform: "uppercase", marginBottom: 4 }}>{l}</div>
-                <div style={{ color: "rgba(244,223,200,0.3)", fontSize: 13 }}>{v}</div>
-              </div>
-            ))}
+        <div
+          className="flex flex-col md:flex-row md:items-center justify-between gap-5 mt-9 pt-6"
+          style={{ borderTop: "1px solid rgba(240,176,109,0.12)" }}
+        >
+          <nav aria-label="Navegación del footer">
+            <ul className="flex flex-wrap gap-x-6 gap-y-3">
+              {NAV_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <button
+                    onClick={() => scrollTo(href)}
+                    style={{
+                      color: "rgba(244,223,200,0.5)",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      fontSize: 10,
+                      fontWeight: 600,
+                      letterSpacing: "0.14em",
+                      padding: 0,
+                      textTransform: "uppercase",
+                      transition: "color 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#F0B06D";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "rgba(244,223,200,0.5)";
+                    }}
+                  >
+                    {label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <a
+              href="#"
+              style={{ color: "rgba(244,223,200,0.45)", fontSize: 11, textDecoration: "none" }}
+            >
+              Instagram
+            </a>
+            <span style={{ color: "rgba(240,176,109,0.3)", fontSize: 10 }}>✦</span>
+            <p style={{ color: "rgba(244,223,200,0.28)", fontSize: 11 }}>
+              © 2026 Samosa King
+            </p>
           </div>
-          <button className="btn-gold" style={{ padding: "11px 28px" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 6px 24px rgba(240,176,109,0.45)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.transform = "none"; (e.currentTarget as HTMLButtonElement).style.boxShadow = "none"; }}>
-            Ordenar Online →
-          </button>
         </div>
-        <p style={{ color: "rgba(244,223,200,0.12)", fontSize: 12, textAlign: "center", marginTop: 28 }}>© 2024 The Samosa King · Hecho con amor y especias reales</p>
       </div>
     </footer>
   );

@@ -9,6 +9,7 @@ const BOXES = [
     size: "Lunchbox for 1",
     tagline: "The Solo Royal",
     price: "$14.99",
+    image: "/Fotos Samosas/LunchBox/Lunchbox2.png",
     badge: null as string | null,
     highlight: false,
     items: [
@@ -24,7 +25,8 @@ const BOXES = [
     tagline: "The Royal Feast",
     price: "$24.99",
     originalPrice: "$29.98",
-    badge: "Best Value" as string | null,
+    image: "/Fotos Samosas/LunchBox/Lunchbox4.png",
+    badge: null as string | null,
     highlight: true,
     items: [
       { icon: "🥟", label: "4 Samosas of Choice" },
@@ -99,8 +101,8 @@ function LunchboxCard({ box }: { box: typeof BOXES[0] }) {
         <div style={{ position: "relative", overflow: "hidden" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Fotos Samosas/LunchBox/c966cfea-12d5-4c0e-82a0-479cfcfc9f78.png"
-            alt="Lunchbox Samosa King"
+            src={box.image}
+            alt={`${box.tagline} — ${box.size}`}
             style={{
               width: "100%", height: "auto", objectFit: "contain",
               transform: open ? "scale(1.04)" : "scale(1)",
